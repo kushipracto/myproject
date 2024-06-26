@@ -1,0 +1,182 @@
+1. Set your username and email in git config
+    git config --global user.name kushipracto
+    git config --global user.email  kushi.as@practo.com
+
+2. Create a new branch named "feature-branch" and switch to it.
+     git checkout -b feature-branch
+
+3. List all branches in the repository.
+   git branch -r
+   Git branch -a
+
+4. Delete the branch “feature-branch”
+   git branch -d feature-branch
+
+   git push origin --delete feature-branch (from remote repository)
+   Cloned 
+
+5. How do you undo the last commit
+   git reset --soft HEAD~1 
+   git reset --hard HEAD~1 
+   git reset --mixed HEAD^
+   git checkout .
+
+
+6. Create a new branch names “conflict-branch”
+    git checkout -b conflict-branch
+
+7. Create a another branch named “feature1”
+    git checkout -b feature1
+
+8. Make some changes in to feature1 branch
+   git add index.html
+   git commit -m "commit from feature1 changed h2 tag to h1"
+   Git push -u origin feature1
+   Git checkout main
+
+9. Merge “feature1” branch into main branch
+    git merge feature1
+
+
+10. Make changes in “conflict-branch”, in the same file and line that you had made changes in feature1
+   index html is changed file now
+   # Assuming you are on the `feature1` branch
+   git checkout -b conflict-branch
+  
+  <div>This is a conflicting change in conflict-branch</div>
+
+11. Merge master into conflict-branch [Attach screenshot of terminal & file]
+    git checkout conflict-branch
+    git pull origin conflict-branch
+    git merge master
+ 
+12. Resolve merge conflicts
+    <div>This is a combined change from both branches</div>
+    git add index.html  # Replace with your conflicted file(s)
+    git commit -m "Resolved merge conflicts"
+    git push origin conflict-branch  # Replace with your branch name
+
+13. Add a remote named "origin" pointing to a GitHub repository.
+    git remote add origin https://github.com/kushipracto/Demoproject.git
+
+14. Fork a repository on GitHub and clone it to your local machine.
+    Git clone https://github.com/kushipracto/Demoproject.git
+
+15. Create a new branch on your fork, make changes, and open a pull request to the original repository.
+    git clone https://github.com/kushipracto/Demoproject.git
+    cd kushipracto
+    git checkout -b feature-branch
+    Git add index.html
+    Git git commit -m "Add new future"
+    git push origin feature-branch
+
+16. Comment on a PR and suggest improvements
+    commit 
+
+17. Create a Git alias for the command `git log --oneline` named `gitlol`.
+    git config --global alias.gitlol "log --oneline"
+    Git gitlol
+
+18. Create a pre-commit hook
+    cd .git/hooks
+
+19. You have made local changes in your branch, but you need to switch to another branch urgently without committing. How would you handle this situation?
+    git stash 
+    git checkout another-branch
+    git stash apply
+
+20. You accidentally deleted a file in your local repository. How do you restore it using Git?
+    git reflog
+    git checkout HEAD@{1} -- <deleted-file-path>
+   
+21. You have committed changes to your branch but forgot to include a file. How do you add the file to the last commit without creating a new commit?
+     git add  file
+     git commit --amend (to amend the last commit with your staged changes)
+
+22. You want to discard all changes in your working directory and revert to the last commit. What Git command would you use?
+    git reset --hard HEAD
+
+23. You need to view a specific commit's changes. What Git command can be used to show the changes introduced by a particular commit?
+    Git log
+    Git show commit-hash
+
+24. You want to change a commit message, after you have already committed, how do you do so?
+    git commit --amend (edit the commit message directly in the editor.)
+
+25. Your colleague has made changes in their branch, and you want to incorporate those changes into your branch without merging. How do you achieve this?
+    git cherry-pick <commit-hash>
+
+26. You've made several commits on a branch, but you want to club them into a single commit before pushing to the remote repository. How would you do that?
+    git log --oneline
+    git rebase -i HEAD~n
+
+27. You accidentally staged a file that you don't want to commit. How do you unstage it?
+     git reset HEAD path_file
+
+28. You don’t want to commit files that have .yml in the end, and also files inside folder config. How do you do that?
+    git add .gitignore (in gitignore file add *.yml)
+    git commit -m "Added .gitignore to ignore .yml files and files in config folder"
+
+
+29. You want to see a list of all the files changed in the last commit. What Git command would you use?
+    git show --name-only HEAD
+
+30. You realize that your local branch is outdated, and you want to fetch the latest changes from the remote repository. How do you do this without merging?
+    git fetch 
+
+31. You accidentally deleted a branch. How do you recover it?
+    git branch -a
+    git checkout -b <branch-name> <commit-hash>
+    git push -u origin <branch-name>
+
+32. You want to remove untracked files and directories from your working directory. What Git command would you use?
+    git clean -n
+
+33. You have a commit from a feature branch that you want to apply to the main branch without merging the entire feature branch.
+    Use cherry-pick
+
+34. You mistakenly committed a change to the wrong branch and need to apply that commit to the correct branch.
+    git rebase --continue
+
+35. There is a series of commits on a feature branch, but you only want to cherry-pick a specific range of commits.
+    git log
+
+36. You want to clone a GitHub repository onto your local machine, but you only need a specific branch. How can you achieve this?
+    git clone -b <branch-name> <repository-url>
+
+37. You've made changes to your local repository and want to push them to your fork on GitHub. What Git commands would you use?
+    git add . 
+    git commit -m "commit message"
+    git push origin branch-name
+
+36. You want to clone a GitHub repository onto your local machine, but you only need a specific branch. How can you achieve this?
+    git clone -b <branch-name> <repository-url>
+
+37. You've made changes to your local repository and want to push them to your fork on GitHub. What Git commands would you use?
+    git add . 
+    git commit -m "commit message"
+    git push origin branch-name
+
+38. You want to create a new branch both locally and on GitHub to work on a new feature. What commands would you use?
+	git checkout -b new
+	git add .
+	git commit -m "Implemented new"
+	git push -u origin new
+
+39. You want to see the commit history of a GitHub repository. How can you do this using Git commands?
+    git log
+    Git log --oneline
+
+
+40. You've accidentally committed sensitive information and want to remove the commit from both your local and remote repositories on GitHub. What commands would you use?
+     git reset commitid (if information is not pushed)
+     git revert <commit-hash> (use git log)
+
+41. You want to delete a remote branch on GitHub. What Git command would you use?
+     git push origin --delete branch-name
+
+43. Create a pull request on any open source library on github, attach the pull request link to the readme file of this project’s repository
+    ### My Contribution
+
+- [Pull Request]( https://github.com/kushipracto/Demoproject.git- Description of the pull request.
+@kushipracto
